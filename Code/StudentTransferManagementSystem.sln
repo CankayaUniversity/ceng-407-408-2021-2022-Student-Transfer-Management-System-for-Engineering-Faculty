@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentTransferManagementSystem", "StudentTransferManagementSystem\StudentTransferManagementSystem.csproj", "{0BEF1800-02BD-4586-9930-309E1A276D92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{7D78988A-2918-4D6D-96D7-598C7027AA81}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{78DFD806-1419-41CD-BC4B-1EFA22A2664A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{21FA9F53-1327-4B02-94B9-31D8184A8556}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentTransferManagementSystem.Data", "StudentTransferManagementSystem.Data\StudentTransferManagementSystem.Data.csproj", "{1B0E2D39-75D5-4087-841C-5038E178A1D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interface", "Interface", "{6FD53B64-F04F-4B62-B522-96CFD2B66730}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Classes", "Classes", "{17BDC4B4-3E52-4ED0-B861-444F3CE55DD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentTransferManagementSystem.Interface", "StudentTransferManagementSystem.Interface\StudentTransferManagementSystem.Interface.csproj", "{202EAD8B-91AB-4A14-B3C3-D54FF6C5B131}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentTransferManagementSystem.Classes", "StudentTransferManagementSystem.Classes\StudentTransferManagementSystem.Classes.csproj", "{3950E55E-811A-4336-BEAC-16C535025FEE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BEF1800-02BD-4586-9930-309E1A276D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BEF1800-02BD-4586-9930-309E1A276D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BEF1800-02BD-4586-9930-309E1A276D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BEF1800-02BD-4586-9930-309E1A276D92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B0E2D39-75D5-4087-841C-5038E178A1D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0E2D39-75D5-4087-841C-5038E178A1D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0E2D39-75D5-4087-841C-5038E178A1D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0E2D39-75D5-4087-841C-5038E178A1D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{202EAD8B-91AB-4A14-B3C3-D54FF6C5B131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{202EAD8B-91AB-4A14-B3C3-D54FF6C5B131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{202EAD8B-91AB-4A14-B3C3-D54FF6C5B131}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{202EAD8B-91AB-4A14-B3C3-D54FF6C5B131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3950E55E-811A-4336-BEAC-16C535025FEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3950E55E-811A-4336-BEAC-16C535025FEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3950E55E-811A-4336-BEAC-16C535025FEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3950E55E-811A-4336-BEAC-16C535025FEE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1B0E2D39-75D5-4087-841C-5038E178A1D4} = {78DFD806-1419-41CD-BC4B-1EFA22A2664A}
+		{6FD53B64-F04F-4B62-B522-96CFD2B66730} = {7D78988A-2918-4D6D-96D7-598C7027AA81}
+		{17BDC4B4-3E52-4ED0-B861-444F3CE55DD1} = {7D78988A-2918-4D6D-96D7-598C7027AA81}
+		{202EAD8B-91AB-4A14-B3C3-D54FF6C5B131} = {6FD53B64-F04F-4B62-B522-96CFD2B66730}
+		{3950E55E-811A-4336-BEAC-16C535025FEE} = {17BDC4B4-3E52-4ED0-B861-444F3CE55DD1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32BDD7C0-1ED8-401B-952B-3188154E6EA1}
+	EndGlobalSection
+EndGlobal
