@@ -8,6 +8,7 @@ namespace StudentTransferManagementSystem.Controllers
 {
     public class AdminController : Controller
     {
+        //TODO
         public IActionResult Index()
         {
 
