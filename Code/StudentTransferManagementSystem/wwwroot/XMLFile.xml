@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<soap:Body>
+		<XMLResponse xmlns="http://tempuri.org/">
+			<XMLResult>
+				<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+					<xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+						<xs:complexType>
+							<xs:choice minOccurs="0" maxOccurs="unbounded">
+								<xs:element name="Table">
+									<xs:complexType>
+										<xs:sequence>
+											<xs:element name="SicilNo" type="xs:string" minOccurs="0"/>
+											<xs:element name="UnvAd" type="xs:string" minOccurs="0"/>
+											<xs:element name="UnvAdEn" type="xs:string" minOccurs="0"/>
+											<xs:element name="PerAd" type="xs:string" minOccurs="0"/>
+											<xs:element name="PerSoyad" type="xs:string" minOccurs="0"/>
+										</xs:sequence>
+									</xs:complexType>
+								</xs:element>
+							</xs:choice>
+						</xs:complexType>
+					</xs:element>
+				</xs:schema>
+				<diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+					<NewDataSet xmlns="">
+						<Table diffgr:id="Table1" msdata:rowOrder="0">
+							<SicilNo>01971</SicilNo>
+							<UnvAd>Prof. Dr.</UnvAd>
+							<UnvAdEn>Prof. Dr.</UnvAdEn>
+							<PerAd>Hasan</PerAd>
+							<PerSoyad>OĞUL</PerSoyad>
+						</Table>
+						<Table diffgr:id="Table2" msdata:rowOrder="1">
+							<SicilNo>02025</SicilNo>
+							<UnvAd>Prof. Dr.</UnvAd>
+							<UnvAdEn>Prof. Dr.</UnvAdEn>
+							<PerAd>Ahmet</PerAd>
+							<PerSoyad>COŞAR</PerSoyad>
+						</Table>
+						<Table diffgr:id="Table3" msdata:rowOrder="2">
+							<SicilNo>01009</SicilNo>
+							<UnvAd>Doç. Dr.</UnvAd>
+							<UnvAdEn>Assoc. Prof. Dr.</UnvAdEn>
+							<PerAd>Hadi Hakan</PerAd>
+							<PerSoyad>MARAŞ</PerSoyad>
+						</Table>
+						<Table diffgr:id="Table4" msdata:rowOrder="3">
+							<SicilNo>01131</SicilNo>
+							<UnvAd>Dr. Öğr. Üyesi</UnvAd>
+							<UnvAdEn>Dr. Instructor</UnvAdEn>
+							<PerAd>Uğur</PerAd>
+							<PerSoyad>SOPAOĞLU</PerSoyad>
+						</Table>
+						<Table diffgr:id="Table5" msdata:rowOrder="4">
+							<SicilNo>00222</SicilNo>
+							<UnvAd>Dr. Öğr. Üyesi</UnvAd>
+							<UnvAdEn>Dr. Instructor</UnvAdEn>
+							<PerAd>Murat</PerAd>
+							<PerSoyad>SARAN</PerSoyad>
+						</Table>
+						<Table diffgr:id="Table6" msdata:rowOrder="5">
+							<SicilNo>00306</SicilNo>
+							<UnvAd>Dr. Öğr. Üyesi</UnvAd>
+							<UnvAdEn>Dr. Instructor</UnvAdEn>
+							<PerAd>Ayşe Nurdan</PerAd>
+							<PerSoyad>SARAN</PerSoyad>
+						</Table>
+						<Table diffgr:id="Table7" msdata:rowOrder="6">
+							<SicilNo>00781</SicilNo>
+							<UnvAd>Dr. Öğr. Üyesi</UnvAd>
+							<UnvAdEn>Dr. Instructor</UnvAdEn>
+							<PerAd>Gül</PerAd>
+							<PerSoyad>TOKDEMİR</PerSoyad>
+						</Table>
+						<Table diffgr:id="Table8" msdata:rowOrder="7">
+							<SicilNo>01958</SicilNo>
+							<UnvAd>Dr. Öğr. Üyesi</UnvAd>
+							<UnvAdEn>Dr. Instructor</UnvAdEn>
+							<PerAd>Serdar</PerAd>
+							<PerSoyad>ARSLAN</PerSoyad>
+						</Table>
+						<Table diffgr:id="Table9" msdata:rowOrder="8">
+							<SicilNo>00629</SicilNo>
+							<UnvAd>Öğr. Gör.</UnvAd>
+							<UnvAdEn>Lecturer</UnvAdEn>
+							<PerAd>Faris Serdar</PerAd>
+							<PerSoyad>TAŞEL</PerSoyad>
+						</Table>
+						<Table diffgr:id="Table10" msdata:rowOrder="9">
+							<SicilNo>00736</SicilNo>
+							<UnvAd>Öğr. Gör.</UnvAd>
+							<UnvAdEn>Lecturer</UnvAdEn>
+							<PerAd>Efe</PerAd>
+							<PerSoyad>ÇİFTCİ</PerSoyad>
+						</Table>
+						<Table diffgr:id="Table11" msdata:rowOrder="10">
+							<SicilNo>01791</SicilNo>
+							<UnvAd>Arş. Gör.</UnvAd>
+							<UnvAdEn>Research Assistant</UnvAdEn>
+							<PerAd>Talha</PerAd>
+							<PerSoyad>KARADENİZ</PerSoyad>
+						</Table>
+						<Table diffgr:id="Table12" msdata:rowOrder="11">
+							<SicilNo>01933</SicilNo>
+							<UnvAd>Arş. Gör.</UnvAd>
+							<UnvAdEn>Research Assistant</UnvAdEn>
+							<PerAd>Kaan Çağhan</PerAd>
+							<PerSoyad>ÖZAYDIN</PerSoyad>
+						</Table>
+					</NewDataSet>
+				</diffgr:diffgram>
+			</XMLResult>
+		</XMLResponse>
+	</soap:Body>
+</soap:Envelope>

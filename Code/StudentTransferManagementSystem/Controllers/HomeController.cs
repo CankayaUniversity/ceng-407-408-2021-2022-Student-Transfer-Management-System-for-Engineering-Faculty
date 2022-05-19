@@ -31,6 +31,23 @@ namespace StudentTransferManagementSystem.Controllers
         {
             return View();
         }
+        public IActionResult StudentListPage()
+        {
+           
+            return View();
+        }
+        public IActionResult Admin()
+        {
+            return View();
+        }
+        public IActionResult Instructor()
+        {
+            return View();
+        }
+        public IActionResult Coordinator()
+        {
+            return View();
+        }
 
         public async Task<IActionResult> Register(RegisterRequest request)
         {

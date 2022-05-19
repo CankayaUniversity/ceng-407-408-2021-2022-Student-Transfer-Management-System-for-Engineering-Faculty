@@ -1,0 +1,26 @@
+﻿<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Surname</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Surname</td>
+            <td>
+                @*@using (Html.BeginForm("StudentId", "Student", FormMethod.Post, new { Id = @item.Id }))*@
+                @using (Html.BeginForm("Instructor", "Student", new { Id = @item.Id }, FormMethod.Post))
+                {
+
+                    <button type="submit" class="btn btn-success">Edit</button>
+                }
+            </td>
+        </tr>
+           
+        }
+        </tbody>
+</table>

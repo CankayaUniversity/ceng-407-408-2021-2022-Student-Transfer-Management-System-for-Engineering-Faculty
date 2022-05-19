@@ -34,6 +34,7 @@ namespace StudentTransferManagementSystem.Classes
                     Ssn = request.Ssn,
                     UserTypes = Data.Enums.UserTypes.Student
                 };
+                
 
                 await this.container.Repository<User>().Add(studentUser);
             }
