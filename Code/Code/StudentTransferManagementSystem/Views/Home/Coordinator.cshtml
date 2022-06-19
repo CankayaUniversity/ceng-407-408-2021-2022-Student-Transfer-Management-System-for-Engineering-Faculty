@@ -1,0 +1,219 @@
+﻿<html>
+<head>
+    <style>
+        .wrap {
+            height: 100%;
+            width: 100%;
+            overflow: auto;
+            padding: 10px;
+            margin: 30px;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: auto;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        input {
+            width: 100%;
+            height: 100%;
+        }
+
+        .fleft {
+            float: left;
+            width: 28%;
+            height: 600px;
+            margin-right: 40px;
+        }
+
+
+        .fcenter {
+            float: left;
+            width: 28%;
+            height: 600px;
+            margin-right: 40px;
+        }
+
+        .fright {
+            float: left;
+            height: 600px;
+            width: 30.5%;
+        }
+
+        .fup {
+            float: left;
+            height: 150px;
+            width: 100%;
+        }
+
+        .fdown {
+            float: center;
+            width: 100%;
+        }
+
+        .button {
+            background-color: #FAFAD2;
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
+        }
+
+        .positionbt {
+            position: absolute;
+            right: 130px;
+        }
+
+        .button2:hover {
+            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+        }
+
+        .text {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="fup">
+            <div class="fleft">
+                <button class="button button2 positionbt" type="button" href="">Student List Page</button>
+                <h2>Ali Yılmaz</h2>
+                <p class="u-text u-text-2">
+                    <span style="font-weight: 700;">Telephone Number:</span> 0530 111 33 22<br>
+                    <span style="font-weight: 700;">TC no:</span> 12345678901<br>
+                    <span style="font-weight: 700;">e-mail:</span> student@cankaya.mail
+                </p>
+            </div>
+
+
+
+        </div>
+        <div class="fleft">
+            <h3 class="text">
+                Transcript
+            </h3><br>
+            <iframe src="https://www.asmod.net/assets/img/pdf/ornek2.pdf" width="100%" height="500px"></iframe>
+
+        </div>
+        <div class="fcenter">
+            <h3 class="text">
+                Course Equivalence Opinion Request Form
+            </h3>
+            <iframe src="https://www.asmod.net/assets/img/pdf/ornek2.pdf" width="100%" height="500px"></iframe>
+        </div>
+        <div class="fright">
+            <form>
+                <label for="circulium"><h3>Choose a circulium:</h3></label>
+                <select name="circulium">
+                    <option>CENG</option>
+                    <option>MECE</option>
+                    <option>SENG</option>
+                    <option>ME</option>
+                </select>
+            </form>
+            <p>Bilgisayar Mühendisliği Lisans Programına Ait Müfredat<p>
+                <table border="1">
+                    <colgroup span="4"></colgroup>
+                    <tr>
+                        <th>Ders Kodu</th>
+                        <th>Ders Adı</th>
+                        <th>Türü</th>
+                        <th>Süresi(T+U)</th>
+                        <th>Yerel Kredisi</th>
+                        <th>AKTS</th>
+                    </tr>
+                    <tr>
+                        <td>Bio 101</td>
+                        <td>Biyolojiye Giriş</td>
+                        <td>Zorunlu</td>
+                        <td>3 - 0</td>
+                        <td>3</td>
+                        <td>5,0</td>
+                    </tr>
+                    <tr>
+                        <td>Ceng 105</td>
+                        <td>Bilgisayar Mühendisliği Oryantasyon</td>
+                        <td>Zorunlu</td>
+                        <td>2 - 0</td>
+                        <td>2</td>
+                        <td>2,0</td>
+                    </tr>
+                    <tr>
+                        <td>Ceng 111</td>
+                        <td>Bilgisayar Programlama I</td>
+                        <td>Zorunlu</td>
+                        <td>3 - 2</td>
+                        <td>4</td>
+                        <td>4,0</td>
+                    </tr>
+                </table>
+        </div>
+        <div class="fdown">
+            <table class="table" style="width: 85%">
+                <thead>
+                    <tr>
+                        <th scope="col">Geldiği Üniversitede Aldığı Dersin Kodu/Adı</th>
+                        <th scope="col" colspan="3">Kredisi</th>
+                        <th scope="col">Dersin Notu</th>
+                        <th scope="col">Üniversitemizde Eşdeğer Sayılacağı Dersin Kodu/Adı</th>
+                        <th scope="col" colspan="3">Kredisi</th>
+                        <th scope="col">Karşılık Gelen Notu</th>
+                        <th scope="col">Kabul/Red</th>
+                        <th scope="col">Değerlendiren Öğr. Elemanı</th>
+                        <th scope="col">İmza/Tarih</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>T</td>
+                        <td>P</td>
+                        <td>K</td>
+                        <td></td>
+                        <td></td>
+                        <td>T</td>
+                        <td>P</td>
+                        <td>K</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                        <td> <input type="text"> </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+            <button type="submit" class="button button2 positionbt" align="center">SAVE</button>
+        </div>
+    </div>
+</body>
+</html>

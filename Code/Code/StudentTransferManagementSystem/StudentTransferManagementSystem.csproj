@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
+    <PackageReference Include="Grpc.Core" Version="2.45.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.19">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="toastr" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StudentTransferManagementSystem.Classes\StudentTransferManagementSystem.Classes.csproj" />
+    <ProjectReference Include="..\StudentTransferManagementSystem.Data\StudentTransferManagementSystem.Data.csproj" />
+    <ProjectReference Include="..\StudentTransferManagementSystem.Interface\StudentTransferManagementSystem.Interface.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="images\" />
+    <Folder Include="Views\Coordinator\" />
+  </ItemGroup>
+
+</Project>

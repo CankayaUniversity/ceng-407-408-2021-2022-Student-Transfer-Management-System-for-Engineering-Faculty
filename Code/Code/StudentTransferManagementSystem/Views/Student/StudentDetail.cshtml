@@ -1,0 +1,317 @@
+﻿<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Admin", "Student")"> Role Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Coordinator</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Department head approve</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Department head</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Course-Instructor Settings</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+
+<div style="vertical-align:central;text-align:center;align-items:center">
+    <h2>Student Detail</h2>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@Model.Name" readonly="readonly">
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Surname</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@Model.Surname" readonly="readonly">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">University</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@Model.University" readonly="readonly">
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">TC ID</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@Model.SSN" readonly="readonly">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="@Model.Email" readonly="readonly">
+            </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Curriculum Detail</label>
+                <button type="submit" class="btn btn-primary" onclick="location.href='@Url.Action("CourseList", "Student")'">Show</button>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Update Instructor</label>
+                <button type="submit" class="btn btn-primary" onclick="location.href='@Url.Action("UpdateCourseInstructor", "Student")'">Show</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="vertical-align:central;text-align:center;align-items:center">
+        <h4>Uploaded Files</h4>
+    </div>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">File Name</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.FileResponses)
+                {
+                    <tr>
+                        <td>@item.FileName</td>
+                        <td>
+                            @using (Html.BeginForm("DownloadPDF", "Student", new { Id = @item.Id }, FormMethod.Post))
+                            {
+                                <button type="submit" class="btn btn-success">Download</button>
+                            }
+                        </td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+    <br />
+
+    <form method="post" enctype="multipart/form-data" asp-controller="Student" asp-action="SaveStudentCourse">
+        <input type="hidden" class="form-control" id="studentId" aria-describedby="studentId" name="studentId" value="@Model.Id">
+        <div class="row">
+
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Taken course code </label>
+                    <input type="text" class="form-control" id="takenCourseCode" aria-describedby="takenCourseCode" name="takenCourseCode">
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Equivalent course code</label>
+                    <input type="text" class="form-control" id="equivalentCourseCode" aria-describedby="equivalentCourseCode" name="equivalentCourseCode">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Taken course credit</label>
+                    <input type="text" class="form-control" id="takenCouseCredit" aria-describedby="takenCouseCredit" name="takenCouseCredit">
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Equivalent course credit</label>
+                    <input type="text" class="form-control" id="equivalentCourseCredit" aria-describedby="equivalentCourseCredit" name="equivalentCourseCredit">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Taken course grade</label>
+                    <input type="text" class="form-control" id="takenCourseGrade" aria-describedby="takenCourseGrade" name="takenCourseGrade">
+                </div>
+            </div>
+
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Equivalent course grade</label>
+                    <input type="text" class="form-control" id="equivalentCourseGrade" aria-describedby="equivalentCourseGrade" name="equivalentCourseGrade">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group" style="align-content:center;text-align:center;justify-content:center">
+                    <label for="exampleInputEmail1">REJECT / APPROVE</label>
+                    <label class="switch">
+                        <input type="checkbox" name="status" id="status" value="true">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
+            </div>
+        </div>
+
+    </form>
+
+    <br />
+
+    <div style="vertical-align:central;text-align:center;align-items:center">
+        <h4>Course List</h4>
+    </div>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Taken course code</th>
+                    <th scope="col">Equivalent course code</th>
+                    <th scope="col">Taken course credit</th>
+                    <th scope="col">Equivalent course credit</th>
+                    <th scope="col">Taken course grade</th>
+                    <th scope="col">Equivalent course grade</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Instructor Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.StudentCourseResponses)
+                {
+                    <tr>
+                        <td>@item.TakenCourseCode</td>
+                        <td>@item.EquivalentCourseCode</td>
+                        <td>@item.TakenCouseCredit</td>
+                        <td>@item.EquivalentCourseCredit</td>
+                        <td>@item.TakenCourseGrade</td>
+                        <td>@item.EquivalentCourseGrade</td>
+                        <td>@item.Status</td>
+                        <td>@item.Username</td>
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+</div>
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 50%;
+        }
+</style>
+
+
+
+
+@*  <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>*@
+@*<button type="submit" class="btn btn-primary">Submit</button>*@

@@ -1,0 +1,77 @@
+﻿@model StudentTransferManagementSystem.Data.Responses.CourseInstructorResponse
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "Information")">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Admin", "Student")"> Role Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("UpdateCourseInstructor", "Student")">Course-Instructor Settings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("ApproveDepartmentHead", "Student")">Department head approve</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("DepartmentHead", "Student")">Department head</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+
+
+<div style="vertical-align:central;text-align:center;align-items:center">
+    <h2> Update Course Instructor</h2>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Course Code</th>
+            <th scope="col">Course Name</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+            <th scope="col">Instructor</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.CourseResponses)
+        {
+            <tr>
+                <td>@item.CourseCode</td>
+                <td>@item.CourseName</td>
+                <td>@item.Status</td>
+                @using (Html.BeginForm("SaveCourseUser", "Student", FormMethod.Post))
+                {
+                    <td>
+                        <input type="hidden" class="form-control" id="courseId" aria-describedby="courseId" name="courseId" value="@item.CourseId">
+                    </td>
+                    <td>
+                        @Html.DropDownList("UserId", new SelectList(Model.InstructorResponses, "UserId", "DisplayName", item.UserId), "Instructor List ")
+
+                    </td>
+                    <td>
+
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </td>
+                }
+
+            </tr>
+
+        }
+
+    </tbody>
+</table>
+<button>ONAYA GÖNDER</button>

@@ -1,0 +1,52 @@
+﻿
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="@Url.Action("Index", "Information")">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("Admin", "Student")"> Role Management</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("UpdateCourseInstructor", "Student")">Course-Instructor Settings</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("ApproveDepartmentHead", "Student")">Department head approve</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="@Url.Action("DepartmentHead", "Student")">Department head</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
+
+
+<div style="vertical-align:central;text-align:center;align-items:center">
+    <h2> Department List</h2>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Code</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Code</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
