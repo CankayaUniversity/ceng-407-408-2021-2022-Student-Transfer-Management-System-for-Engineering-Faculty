@@ -152,5 +152,12 @@ namespace StudentTransferManagementSystem.Controllers
 
             return NoContent();
         }
+
+        public async Task<ActionResult> ApproveStudent(int id)
+        {
+            var saveResult = await studentBusiness.ApproveStudent(id);
+
+            return NoContent();
+        }
     }
 }

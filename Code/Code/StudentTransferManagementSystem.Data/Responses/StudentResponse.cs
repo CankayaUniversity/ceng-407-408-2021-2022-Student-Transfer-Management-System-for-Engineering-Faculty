@@ -23,6 +23,8 @@ namespace StudentTransferManagementSystem.Data.Responses
 
         public List<StudentCourseResponse> StudentCourseResponses { get; set; }
 
+        public string Status { get; set; }
+
         public StudentResponse()
         {
             this.FileResponses = new List<FileResponse>();

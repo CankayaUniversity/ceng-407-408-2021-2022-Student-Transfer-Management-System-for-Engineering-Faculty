@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudentTransferManagementSystem.Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,6 +16,8 @@ namespace StudentTransferManagementSystem.Data.Entities
         public string Email { get; set; }
 
         public int DepartmentId { get; set; }
+
+        public StudentStatus StudentStatus { get; set; }
     }
 
 }

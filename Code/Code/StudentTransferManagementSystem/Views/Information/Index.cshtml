@@ -33,7 +33,10 @@
             }
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <span>@ViewBag.name  </span>  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Logout</button>
+            <span style="font-weight:bold;margin-right:15px">@ViewBag.name </span>
+        </form>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");"> Logout</button>
         </form>
     </div>
 </nav>
@@ -50,32 +53,34 @@
             <th scope="col">Surname</th>
             <th scope="col"></th>
             <th scope="col"></th>
+            <th scope="col"></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.Name</td>
-                <td>@item.Surname</td>
-                <td>
-                    @*@using (Html.BeginForm("StudentId", "Student", FormMethod.Post, new { Id = @item.Id }))*@
-                    @using (Html.BeginForm("StudentDetail", "Student", new { Id = @item.Id }, FormMethod.Post))
-                    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Surname</td>
+            <td>@item.Status</td>
+            <td>
+                @*@using (Html.BeginForm("StudentId", "Student", FormMethod.Post, new { Id = @item.Id }))*@
+                @using (Html.BeginForm("StudentDetail", "Student", new { Id = @item.Id }, FormMethod.Post))
+                {
 
-                        <button type="submit" class="btn btn-success">Update</button>
-                    }
+                    <button type="submit" class="btn btn-success">Update</button>
+                }
 
 
-                </td>
-                <td>
-                    @using (Html.BeginForm("StudentCourseListDetail", "Student", new { Id = @item.Id }, FormMethod.Post))
-                    {
+            </td>
+            <td>
+                @using (Html.BeginForm("StudentCourseListDetail", "Student", new { Id = @item.Id }, FormMethod.Post))
+                {
 
-                        <button type="submit" class="btn btn-success">Detail</button>
-                    }
-                </td>
-            </tr>
+                    <button type="submit" class="btn btn-success">Detail</button>
+                }
+            </td>
+        </tr>
 
         }
     </tbody>

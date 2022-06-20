@@ -23,5 +23,6 @@ namespace StudentTransferManagementSystem.Interface
         Task<List<CourseResponse>> GetCourseApproveDepartmentHead();
         Task<bool> Approve(ApproveRejectRequest request);
         Task<bool> Reject(ApproveRejectRequest request);
+        Task<bool> ApproveStudent(int id);
     }
 }

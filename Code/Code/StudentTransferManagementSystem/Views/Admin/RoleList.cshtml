@@ -35,7 +35,10 @@
             }
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <span>@ViewBag.name  </span>  <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> Logout</button>
+            <span style="font-weight:bold;margin-right:15px">@ViewBag.name </span>
+        </form>
+        <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");"> Logout</button>
         </form>
     </div>
 </nav>

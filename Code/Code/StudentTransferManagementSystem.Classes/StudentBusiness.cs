@@ -51,7 +51,8 @@ namespace StudentTransferManagementSystem.Classes
                 Name = x.Name,
                 Surname = x.Surname,
                 DisplayName = x.Name + " " + x.Surname,
-                Id = x.Id
+                Id = x.Id,
+                Status = EnumHelper.GetDescription(x.StudentStatus)
             }).ToList();
 
             return result;
@@ -477,6 +478,16 @@ namespace StudentTransferManagementSystem.Classes
             return await this.GetCourses(email);
 
 
+        }
+
+        public async Task<bool> ApproveStudent(int id)
+        {
+            var student = await this.container.Repository<Student>().GetById(id);
+
+            student.StudentStatus = StudentStatus.Approved;
+            await this.container.Repository<Student>().Save();
+
+            return true;
         }
     }
 }
