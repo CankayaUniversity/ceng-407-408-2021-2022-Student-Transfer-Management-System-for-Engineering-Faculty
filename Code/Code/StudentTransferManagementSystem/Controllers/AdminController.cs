@@ -31,7 +31,6 @@ namespace StudentTransferManagementSystem.Controllers
 
             return View();
         }
-
         public async Task<ActionResult> DepartmentList()
         {
             var emailAddress = HttpContext.Session.GetString("email");
@@ -42,7 +41,6 @@ namespace StudentTransferManagementSystem.Controllers
 
             return View(result);
         }
-
         private async Task GetSession(string email)
         {
             if (string.IsNullOrEmpty(email))
@@ -59,7 +57,6 @@ namespace StudentTransferManagementSystem.Controllers
                 ViewBag.userType = existUser.UserType;
             }
         }
-
         public async Task<ActionResult> SaveUserRole(UserRoleRequest request)
         {
             var emailAddress = HttpContext.Session.GetString("email");
@@ -70,7 +67,6 @@ namespace StudentTransferManagementSystem.Controllers
 
             return NoContent();
         }
-
         public async Task<ActionResult> RoleList()
         {
             var emailAddress = HttpContext.Session.GetString("email");

@@ -51,6 +51,8 @@
             <th scope="col">Instructor</th>
             <th scope="col"></th>
             <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
 
         </tr>
     </thead>
@@ -58,24 +60,45 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>@item.CourseCode</td>
-                <td>@item.CourseName</td>
+        <tr>
+            <td>@item.CourseCode</td>
+            <td>@item.CourseName</td>
+
+            <td>
+                <input type="hidden" class="form-control" id="courseId" aria-describedby="courseId" name="courseId" value="@item.CourseId">
+            </td>
+            <td>
+                @item.UserDisplayName
+            </td>
+            @using (Html.BeginForm("Approve", "Student", FormMethod.Post))
+            {
+                <td>
+                    <input type="hidden" class="form-control" id="courseId" aria-describedby="courseId" name="courseId" value="@item.CourseId">
+                </td>
+
+                <td>
+                    <input type="hidden" class="form-control" id="userId" aria-describedby="userId" name="userId" value="@item.UserId">
+                </td>
+
+                <td>
+                    <button type="submit" class="btn btn-success">Approve</button>
+                </td>
+            }
+            @using (Html.BeginForm("Reject", "Student", FormMethod.Post))
+            {
 
                 <td>
                     <input type="hidden" class="form-control" id="courseId" aria-describedby="courseId" name="courseId" value="@item.CourseId">
                 </td>
-                <td>
-                    @item.UserDisplayName
-                </td>
-                <td>
-                    <button type="submit" class="btn btn-success">Approve</button>
-                </td>
 
+                <td>
+                    <input type="hidden" class="form-control" id="userId" aria-describedby="userId" name="userId" value="@item.UserId">
+                </td>
                 <td>
                     <button type="submit" class="btn btn-danger">Reject</button>
                 </td>
-            </tr>
+            }
+        </tr>
         }
 
     </tbody>

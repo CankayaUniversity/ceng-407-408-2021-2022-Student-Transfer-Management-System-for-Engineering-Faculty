@@ -20,12 +20,10 @@ namespace StudentTransferManagementSystem.Classes
     public class StudentBusiness : IStudentBusiness
     {
         private readonly IContainer container;
-
         public StudentBusiness(IContainer container)
         {
             this.container = container;
         }
-
         private async Task<User> GetUserByEmail(string email)
         {
             var userList = await this.container.Repository<User>().ListAll();
@@ -33,7 +31,6 @@ namespace StudentTransferManagementSystem.Classes
             var existUser = userList.Where(l => l.Email == email).FirstOrDefault();
             return existUser;
         }
-
         public async Task<List<StudentResponse>> ListAllStudent(string emailAddress)
         {
             List<Student> students = new List<Student>();
@@ -327,7 +324,6 @@ namespace StudentTransferManagementSystem.Classes
 
             return true;
         }
-
         public async Task<RoleResponse> AssignRole()
         {
             ////var roles = await this.GetRoles();
@@ -344,8 +340,6 @@ namespace StudentTransferManagementSystem.Classes
             ///
             return null;
         }
-
-
         public async Task<List<CourseResponse>> GetCourseApproveDepartmentHead()
         {
             var courseList = await this.container.Repository<CourseUser>().ListAll();
@@ -361,13 +355,48 @@ namespace StudentTransferManagementSystem.Classes
                 {
                     response.CourseName = course.CourseName;
                     response.CourseCode = course.CourseCode;
+                    response.CourseId = course.Id;
                     response.UserDisplayName = user.Name + " " + user.Surname;
-
+                    response.UserId = user.Id;
                     result.Add(response);
                 }
             }
 
             return result;
+        }
+        public async Task<bool> Approve(ApproveRejectRequest request)
+        {
+            var existCourse = await this.container.Repository<Course>().GetById(request.CourseId);
+
+            existCourse.CourseInstructorStatus = CourseInstructorEnum.ApprovedDepartmentHead;
+
+            var existCourseUser = await this.container.Repository<CourseUser>().GetByWithExpression(l => l.CourseId == request.CourseId);
+
+            if (existCourseUser != null)
+            {
+                existCourseUser.UserId = request.UserId;
+            }
+
+            await this.container.Repository<CourseUser>().Save();
+
+            return true;
+        }
+        public async Task<bool> Reject(ApproveRejectRequest request)
+        {
+            var existCourse = await this.container.Repository<Course>().GetById(request.CourseId);
+
+            existCourse.CourseInstructorStatus = CourseInstructorEnum.Waiting;
+
+            var existCourseUser = await this.container.Repository<CourseUser>().GetByWithExpression(l => l.CourseId == request.CourseId);
+
+            if (existCourseUser != null)
+            {
+                existCourseUser.UserId = 0;
+            }
+
+            await this.container.Repository<CourseUser>().Save();
+
+            return true; 
         }
     }
 }

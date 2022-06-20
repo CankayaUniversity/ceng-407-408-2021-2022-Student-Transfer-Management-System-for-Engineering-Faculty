@@ -138,5 +138,19 @@ namespace StudentTransferManagementSystem.Controllers
 
             return View(result);
         }
+
+        public async Task<ActionResult> Approve(ApproveRejectRequest request)
+        {
+            var saveResult = await studentBusiness.Approve(request);
+
+            return NoContent();
+        }
+
+        public async Task<ActionResult> Reject(ApproveRejectRequest request)
+        {
+            var saveResult = await studentBusiness.Reject(request);
+
+            return NoContent();
+        }
     }
 }
