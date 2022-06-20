@@ -17,6 +17,7 @@ namespace StudentTransferManagementSystem.Interface
         Task<FileResponse> GetFileDetail(int Id);
         Task<StudentResponse> SaveStudentCourse(StudentCourseRequest request);
         Task<List<CourseResponse>> GetCourses(string email);
+        Task<List<CourseResponse>> CourseList(string email);
         Task<CourseInstructorResponse> GetCourseViewData(string email);
         Task<bool> SaveCourseUser(CourseUserRequest request);
         Task<List<CourseResponse>> GetCourseApproveDepartmentHead();

@@ -368,7 +368,21 @@ namespace StudentTransferManagementSystem.Classes
         {
             var existCourse = await this.container.Repository<Course>().GetById(request.CourseId);
 
-            existCourse.CourseInstructorStatus = CourseInstructorEnum.ApprovedDepartmentHead;
+            var user = await this.container.Repository<User>().GetById(request.UserId);
+
+
+            var allUserCourses = await this.container.Repository<CourseUser>().GetByWithExpressionList(l => l.UserId == request.UserId);
+
+            bool isEmailSender = false;
+            foreach (var item in allUserCourses)
+            {
+                var courses = await this.container.Repository<Course>().GetById(item.CourseId);
+
+                if (courses.CourseInstructorStatus == CourseInstructorEnum.ApprovedDepartmentHead)
+                {
+                    isEmailSender = true;
+                }
+            }
 
             var existCourseUser = await this.container.Repository<CourseUser>().GetByWithExpression(l => l.CourseId == request.CourseId);
 
@@ -376,6 +390,13 @@ namespace StudentTransferManagementSystem.Classes
             {
                 existCourseUser.UserId = request.UserId;
             }
+
+            if (!isEmailSender)
+            {
+                MailSender.Send(user.Email, "");
+            }
+
+            existCourse.CourseInstructorStatus = CourseInstructorEnum.ApprovedDepartmentHead;
 
             await this.container.Repository<CourseUser>().Save();
 
@@ -396,7 +417,66 @@ namespace StudentTransferManagementSystem.Classes
 
             await this.container.Repository<CourseUser>().Save();
 
-            return true; 
+            return true;
+        }
+
+        public async Task<List<CourseResponse>> CourseList(string email)
+        {
+            if (!string.IsNullOrEmpty(email))
+            {
+                var existUser = await this.container.Repository<User>().GetByWithExpression(l => l.Email == email);
+
+                var courseUserList = await this.container.Repository<CourseUser>().GetByWithExpressionList(l => l.UserId == existUser.Id);
+
+                var courses = new List<Course>();
+
+                foreach (var item in courseUserList)
+                {
+                    var course = await this.container.Repository<Course>().GetById(item.CourseId);
+
+                    if (course.CourseInstructorStatus == CourseInstructorEnum.ApprovedDepartmentHead)
+                    {
+                        courses.Add(course);
+                    }
+                }
+
+                List<CourseResponse> result = new List<CourseResponse>();
+                foreach (var item in courses)
+                {
+                    var courseResponse = new CourseResponse();
+                    courseResponse.CourseCode = item.CourseCode;
+                    courseResponse.CourseName = item.CourseName;
+                    courseResponse.Credit = item.Credit;
+                    courseResponse.CourseId = item.Id;
+                    courseResponse.Time = item.Time;
+                    courseResponse.Type = item.Type;
+                    courseResponse.AKTS = item.AKTS;
+                    var courseInstructorList = await this.container.Repository<CourseUser>().ListAll();
+
+                    var courseInstructor = courseInstructorList.Where(l => l.CourseId == item.Id).FirstOrDefault();
+
+                    if (courseInstructor != null)
+                    {
+                        courseResponse.UserId = courseInstructor.UserId;
+
+                        var user = await this.container.Repository<User>().GetById(courseResponse.UserId);
+                        if (user != null)
+                        {
+                            courseResponse.UserDisplayName = user.Name + " " + user.Surname;
+                        }
+                    }
+
+                    courseResponse.Status = EnumHelper.GetDescription(item.CourseInstructorStatus);
+
+                    result.Add(courseResponse);
+                }
+
+                return result;
+            }
+
+            return await this.GetCourses(email);
+
+
         }
     }
 }

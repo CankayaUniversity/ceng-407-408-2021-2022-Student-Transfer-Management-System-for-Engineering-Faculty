@@ -95,7 +95,7 @@ namespace StudentTransferManagementSystem.Controllers
 
             await this.GetSession(emailAddress);
 
-            var result = await studentBusiness.GetCourses(emailAddress);
+            var result = await studentBusiness.CourseList(emailAddress);
             return View(result);
         }
         public async Task<ActionResult> UpdateCourseInstructor()
