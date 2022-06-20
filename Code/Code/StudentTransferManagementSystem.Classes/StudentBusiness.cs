@@ -26,9 +26,24 @@ namespace StudentTransferManagementSystem.Classes
             this.container = container;
         }
 
-        public async Task<List<StudentResponse>> ListAllStudent()
+        private async Task<User> GetUserByEmail(string email)
         {
-            var students = await this.container.Repository<Student>().ListAll();
+            var userList = await this.container.Repository<User>().ListAll();
+
+            var existUser = userList.Where(l => l.Email == email).FirstOrDefault();
+            return existUser;
+        }
+
+        public async Task<List<StudentResponse>> ListAllStudent(string emailAddress)
+        {
+            List<Student> students = new List<Student>();
+            students = await this.container.Repository<Student>().ListAll();
+
+            if (!string.IsNullOrEmpty(emailAddress))
+            {
+                var user = await this.GetUserByEmail(emailAddress);
+                students = students.Where(l => l.DepartmentId == user.DepartmentId).ToList();
+            }
 
             //var students = userList.Where(l => l.UserTypes == UserTypes.Student).ToList();
 
@@ -195,9 +210,15 @@ namespace StudentTransferManagementSystem.Classes
 
             return student;
         }
-        public async Task<List<CourseResponse>> GetCourses()
+        public async Task<List<CourseResponse>> GetCourses(string email)
         {
             var list = await this.container.Repository<Course>().ListAll();
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                var user = await this.GetUserByEmail(email);
+                list = list.Where(l => l.DepartmentId == user.DepartmentId).ToList();
+            }
 
             List<CourseResponse> result = new List<CourseResponse>();
             foreach (var item in list)
@@ -233,9 +254,15 @@ namespace StudentTransferManagementSystem.Classes
 
             return result;
         }
-        public async Task<List<InstructorResponse>> ListAllInstructor()
+        public async Task<List<InstructorResponse>> ListAllInstructor(string email)
         {
             var instructors = await this.container.Repository<User>().ListAll();
+
+            if (!string.IsNullOrEmpty(email))
+            {
+                var user = await this.GetUserByEmail(email);
+                instructors = instructors.Where(l => l.DepartmentId == user.DepartmentId).ToList();
+            }
 
             var result = instructors.Where(l => l.UserType == UserType.Instructor).Select(x => new InstructorResponse
             {
@@ -247,11 +274,11 @@ namespace StudentTransferManagementSystem.Classes
 
             return result;
         }
-        public async Task<CourseInstructorResponse> GetCourseViewData()
+        public async Task<CourseInstructorResponse> GetCourseViewData(string email)
         {
-            var courses = await this.GetCourses();
+            var courses = await this.GetCourses(email);
 
-            var users = await this.ListAllInstructor();
+            var users = await this.ListAllInstructor(email);
 
             var response = new CourseInstructorResponse();
 

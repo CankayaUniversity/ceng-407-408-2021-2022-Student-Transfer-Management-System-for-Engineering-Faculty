@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Coordinator\**" />
+    <Content Remove="Views\Coordinator\**" />
+    <EmbeddedResource Remove="Views\Coordinator\**" />
+    <None Remove="Views\Coordinator\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspNetCoreHero.ToastNotification" Version="1.1.0" />
     <PackageReference Include="Grpc.Core" Version="2.45.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.19">
@@ -22,7 +29,6 @@
 
   <ItemGroup>
     <Folder Include="images\" />
-    <Folder Include="Views\Coordinator\" />
   </ItemGroup>
 
 </Project>

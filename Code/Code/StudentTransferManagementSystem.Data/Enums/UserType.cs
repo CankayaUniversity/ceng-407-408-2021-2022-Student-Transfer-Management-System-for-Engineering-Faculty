@@ -14,6 +14,9 @@ namespace StudentTransferManagementSystem.Data.Enums
         Coordinator = 2,
 
         [Description("Admin")]
-        Admin = 3
+        Admin = 3,
+
+        [Description("Department Head")]
+        DepartmentHead = 4
     }
 }

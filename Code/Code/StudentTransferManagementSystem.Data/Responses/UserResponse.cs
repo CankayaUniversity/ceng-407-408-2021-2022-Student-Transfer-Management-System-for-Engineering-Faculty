@@ -7,9 +7,8 @@ namespace StudentTransferManagementSystem.Data.Responses
     public class UserResponse
     {
         public int Id { get; set; }
-
         public string DisplayName { get; set; }
-
         public int Value { get; set; }
+        public int UserType { get; set; }
     }
 }

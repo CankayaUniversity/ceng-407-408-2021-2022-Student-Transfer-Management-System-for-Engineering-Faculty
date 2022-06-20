@@ -25,6 +25,18 @@ namespace StudentTransferManagementSystem.Classes
             this.container = container;
         }
 
+        public async Task<UserResponse> GetUserDetail(string email)
+        {
+            var existUser = await this.container.Repository<User>().GetByWithExpression(l => l.Email == email);
+
+            var userResponse = new UserResponse();
+            userResponse.DisplayName = existUser.Name + " " + existUser.Surname;
+            userResponse.Id = existUser.Id;
+            userResponse.UserType = (int)existUser.UserType;
+
+            return userResponse;
+        }
+
         public async Task<SessionResponse> Login(LoginRequest request)
         {
             var result = WebServiceHelper.CallWebService();
@@ -43,7 +55,9 @@ namespace StudentTransferManagementSystem.Classes
             session.IsLoginSuccess = true;
             session.Email = existUser.Email;
 
+
             return session;
         }
+
     }
 }

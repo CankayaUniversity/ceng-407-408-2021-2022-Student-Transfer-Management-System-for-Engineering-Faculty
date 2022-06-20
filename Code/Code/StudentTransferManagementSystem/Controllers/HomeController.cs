@@ -21,7 +21,6 @@ namespace StudentTransferManagementSystem.Controllers
         private readonly IStudentBusiness studentBusiness;
         private readonly IAdminBusiness adminBusiness;
         private readonly INotyfService _notyf;
-
         public HomeController(ILogger<HomeController> logger,
             IAccountBusiness accountBusiness,
             INotyfService notyf,
@@ -39,28 +38,6 @@ namespace StudentTransferManagementSystem.Controllers
         {
             var departments = await this.adminBusiness.GetDepartments();
             return View(departments);
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-        public IActionResult StudentListPage()
-        {
-
-            return View();
-        }
-        public IActionResult Admin()
-        {
-            return View();
-        }
-        public IActionResult Instructor()
-        {
-            return View();
-        }
-        public IActionResult Coordinator()
-        {
-            return View();
         }
 
         public async Task<IActionResult> SaveStudent(RegisterRequest request)
@@ -128,7 +105,6 @@ namespace StudentTransferManagementSystem.Controllers
                 return RedirectToAction("Index");
             }
 
-
             return NoContent();
         }
 
@@ -146,68 +122,41 @@ namespace StudentTransferManagementSystem.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var result = await this.accountBusiness.Login(request);
-
-            if (!result.IsLoginSuccess)
+            if (request.Email == "administrator")
             {
-                _notyf.Error("Email or Registration Number is Wrong!");
-                return RedirectToAction("Index", "Home");
+                if (request.RegistrationNumber != 0007)
+                {
+                    _notyf.Error("Please Enter Correct Registration Number");
+                    return RedirectToAction("Index", "Home");
+                }
+
+                HttpContext.Session.SetString("name", "administrator");
+                HttpContext.Session.SetString("email", string.Empty);
+                return RedirectToAction("Index", "Information");
             }
-            //if (result.Email == "saran@cankaya.edu.tr")
-            //{
-            //    return RedirectToAction("Student", "Admin");
-            //}
+            else
+            {
+                var result = await this.accountBusiness.Login(request);
 
-            HttpContext.Session.SetString("name", result.Name);
+                if (!result.IsLoginSuccess)
+                {
+                    _notyf.Error("Email or Registration Number is Wrong!");
+                    return RedirectToAction("Index", "Home");
+                }
 
+                HttpContext.Session.SetString("name", result.Name);
+                HttpContext.Session.SetString("email", result.Email);
+
+                ViewBag.name = result.Name;
+            }
 
             return RedirectToAction("Index", "Information");
-
-
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> UploadFile(IFormFile file)
-        {
-            if (file == null || file.Length == 0)
-                return Content("file not selected");
-
-            //var path = Path.Combine(
-            //            Directory.GetCurrentDirectory(), "wwwroot",
-            //            file.GetFilename());
-
-            //using (var stream = new FileStream(path, FileMode.Create))
-            //{
-            //    await file.CopyToAsync(stream);
-            //}
-
-            return RedirectToAction("Files");
-        }
-
-        public async Task<IActionResult> Download(string filename)
-        {
-            //if (filename == null)
-            //    return Content("filename not present");
-
-            //var path = Path.Combine(
-            //               Directory.GetCurrentDirectory(),
-            //               "wwwroot", filename);
-
-            //var memory = new MemoryStream();
-            //using (var stream = new FileStream(path, FileMode.Open))
-            //{
-            //    await stream.CopyToAsync(memory);
-            //}
-            //memory.Position = 0;
-            //return File(memory, GetContentType(path), Path.GetFileName(path));
-
-            return null;
         }
     }
 }

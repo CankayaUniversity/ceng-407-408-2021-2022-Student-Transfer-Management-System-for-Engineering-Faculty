@@ -16,25 +16,42 @@ namespace StudentTransferManagementSystem.Controllers
     {
         private readonly IStudentBusiness studentBusiness;
         private readonly INotyfService notyf;
+        private readonly IAccountBusiness accountBusiness;
 
-        public StudentController(IStudentBusiness studentBusiness, INotyfService notyf)
+        public StudentController(IStudentBusiness studentBusiness, INotyfService notyf,IAccountBusiness accountBusiness)
         {
             this.studentBusiness = studentBusiness;
             this.notyf = notyf;
+            this.accountBusiness = accountBusiness;
         }
         public IActionResult Index()
         {
             return View();
         }
-        public async Task<IActionResult> StudentListPage()
+        private async Task GetSession(string email)
         {
-            var studentList = await studentBusiness.ListAllStudent();
-            return View(studentList);
+            if (string.IsNullOrEmpty(email))
+            {
+                ViewBag.name = "administrator";
+                ViewBag.isAdmin = true;
+            }
+            else
+            {
+                var existUser = await this.accountBusiness.GetUserDetail(email);
+
+                ViewBag.name = existUser.DisplayName;
+                ViewBag.isAdmin = false;
+                ViewBag.userType = existUser.UserType;
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> StudentDetail(int Id)
         {
+            var emailAddress = HttpContext.Session.GetString("email");
+
+            await this.GetSession(emailAddress);
+
             var selectedStudent = await studentBusiness.SelectedStudent(Id);
             return View(selectedStudent);
         }
@@ -42,6 +59,10 @@ namespace StudentTransferManagementSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> StudentCourseListDetail(int Id)
         {
+            var emailAddress = HttpContext.Session.GetString("email");
+
+            await this.GetSession(emailAddress);
+
             var selectedStudent = await studentBusiness.SelectedStudent(Id);
             return View(selectedStudent);
         }
@@ -58,57 +79,64 @@ namespace StudentTransferManagementSystem.Controllers
         {
             var currentUser = HttpContext.Session.GetString("name");
 
+            var emailAddress = HttpContext.Session.GetString("email");
+
+            await this.GetSession(emailAddress);
+
             request.UserName = currentUser;
             var result = await studentBusiness.SaveStudentCourse(request);
 
-
-            //var selectedStudent = await studentBusiness.SelectedStudent(Id);
             return View("StudentDetail", result);
         }
 
         public async Task<ActionResult> CourseList()
         {
-            var result = await studentBusiness.GetCourses();
+            var emailAddress = HttpContext.Session.GetString("email");
+
+            await this.GetSession(emailAddress);
+
+            var result = await studentBusiness.GetCourses(emailAddress);
             return View(result);
         }
         public async Task<ActionResult> UpdateCourseInstructor()
         {
-            var result = await studentBusiness.GetCourseViewData();
+            var emailAddress = HttpContext.Session.GetString("email");
+
+            await this.GetSession(emailAddress);
+            var result = await studentBusiness.GetCourseViewData(emailAddress);
             return View(result);
         }
 
         public async Task<ActionResult> SaveCourseUser(CourseUserRequest request)
         {
+            var emailAddress = HttpContext.Session.GetString("email");
+
+            await this.GetSession(emailAddress);
+
             var saveResult = await studentBusiness.SaveCourseUser(request);
 
             return NoContent();
         }
 
-        //public async Task<ActionResult> Admin()
-        //{
-        //    var result = await studentBusiness.GetRoles();
-        //    return View(result);
-        //}
         public async Task<IActionResult> DepartmentHead(int Id)
         {
+            var emailAddress = HttpContext.Session.GetString("email");
+
+            await this.GetSession(emailAddress);
+
             var selectedStudent = await studentBusiness.SelectedStudent(Id);
             return View(selectedStudent);
         }
 
-
-
         public async Task<ActionResult> ApproveDepartmentHead()
         {
+            var emailAddress = HttpContext.Session.GetString("email");
+
+            await this.GetSession(emailAddress);
+
             var result = await studentBusiness.GetCourseApproveDepartmentHead();
 
             return View(result);
         }
-
-
-
-
-        //TODO : 1 method 
-        // id parametresi alıcak
-        //business'a gidicek ve seçtiğimiz öğrencinin id si ile veri tabanından ilgili öğrenciyi çekicek
     }
 }

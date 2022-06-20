@@ -9,7 +9,7 @@ namespace StudentTransferManagementSystem.Interface
 {
     public interface IAccountBusiness
     {
-
         Task<SessionResponse> Login(LoginRequest request);
+        Task<UserResponse> GetUserDetail(string email);
     }
 }
