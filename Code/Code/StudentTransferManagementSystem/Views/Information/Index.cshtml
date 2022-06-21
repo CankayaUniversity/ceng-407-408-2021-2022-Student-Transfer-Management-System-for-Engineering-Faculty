@@ -24,9 +24,9 @@
 
                     <a class="nav-link" href="@Url.Action("ApproveDepartmentHead", "Student")">Department head approve</a>
                 </li>
-                <li class="nav-item">
+                @*<li class="nav-item">
                     <a class="nav-link" href="@Url.Action("DepartmentHead", "Student")">Department head</a>
-                </li>
+                </li>*@
                 <li class="nav-item">
                     <a class="nav-link" href="@Url.Action("DepartmentList", "Admin")">Department Management</a>
                 </li>
@@ -65,7 +65,7 @@
             <td>@item.Status</td>
             <td>
                 @*@using (Html.BeginForm("StudentId", "Student", FormMethod.Post, new { Id = @item.Id }))*@
-                @using (Html.BeginForm("StudentDetail", "Student", new { Id = @item.Id }, FormMethod.Post))
+                @using (Html.BeginForm("StudentDetail", "Student", new { Id = @item.Id }, FormMethod.Get))
                 {
 
                     <button type="submit" class="btn btn-success">Update</button>

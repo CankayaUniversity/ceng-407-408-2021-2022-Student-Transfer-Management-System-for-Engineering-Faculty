@@ -86,11 +86,11 @@ namespace StudentTransferManagementSystem.Classes
             student.University = existStudent.University;
             student.DisplayName = existStudent.Name + " " + existStudent.Surname;
 
-            var files = await this.container.Repository<CustomFile>().ListAll();
+            var files = await this.container.Repository<CustomFile>().GetByWithExpressionList(l => l.StudentId == id);
 
 
 
-            var selectedFiles = files.Where(l => l.StudentId == id).ToList().Select(l => new FileResponse
+            var selectedFiles = files.Select(l => new FileResponse
             {
                 Content = l.FileContent,
                 FileName = l.FileName,

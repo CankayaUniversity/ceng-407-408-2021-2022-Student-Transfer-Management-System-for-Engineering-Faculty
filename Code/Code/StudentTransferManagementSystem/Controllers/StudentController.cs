@@ -45,7 +45,7 @@ namespace StudentTransferManagementSystem.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         public async Task<IActionResult> StudentDetail(int Id)
         {
             var emailAddress = HttpContext.Session.GetString("email");
