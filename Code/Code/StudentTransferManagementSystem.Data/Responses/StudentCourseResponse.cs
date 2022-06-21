@@ -17,5 +17,7 @@ namespace StudentTransferManagementSystem.Data.Responses
         public int StudentId { get; set; }
 
         public string Username { get; set; }
+
+        public string StatusValue { get; set; }
     }
 }

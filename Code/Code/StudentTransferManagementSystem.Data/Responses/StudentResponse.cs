@@ -21,6 +21,8 @@ namespace StudentTransferManagementSystem.Data.Responses
 
         public List<FileResponse> FileResponses { get; set; }
 
+        public string StatusValue { get; set; }
+
         public List<StudentCourseResponse> StudentCourseResponses { get; set; }
 
         public string Status { get; set; }

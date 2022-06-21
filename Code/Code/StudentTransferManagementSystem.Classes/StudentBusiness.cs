@@ -74,7 +74,6 @@ namespace StudentTransferManagementSystem.Classes
         }
         public async Task<StudentResponse> SelectedStudent(int id)
         {
-
             var existStudent = await this.container.Repository<Student>().GetById(id);
 
             var student = new StudentResponse();
@@ -83,12 +82,11 @@ namespace StudentTransferManagementSystem.Classes
             student.Surname = existStudent.Surname;
             student.Email = existStudent.Email;
             student.SSN = existStudent.Ssn;
+
             student.University = existStudent.University;
             student.DisplayName = existStudent.Name + " " + existStudent.Surname;
 
             var files = await this.container.Repository<CustomFile>().GetByWithExpressionList(l => l.StudentId == id);
-
-
 
             var selectedFiles = files.Select(l => new FileResponse
             {
@@ -115,6 +113,16 @@ namespace StudentTransferManagementSystem.Classes
                 courseResponse.EquivalentCourseCode = item.EquivalentCourseCode;
                 courseResponse.EquivalentCourseCredit = item.EquivalentCourseCredit;
                 courseResponse.EquivalentCourseGrade = item.EquivalentCourseGrade;
+
+                if (item.Status)
+                {
+                    courseResponse.StatusValue = "Approved";
+                }
+                else
+                {
+                    courseResponse.StatusValue = "Rejected";
+                }
+
                 courseResponse.Status = item.Status;
                 courseResponse.TakenCourseCode = item.TakenCourseCode;
                 courseResponse.TakenCourseGrade = item.TakenCourseGrade;
